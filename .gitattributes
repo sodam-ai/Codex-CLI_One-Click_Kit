@@ -1,0 +1,8 @@
+# Normalize text to LF in the repository by default
+* text=auto eol=lf
+
+# Windows batch launcher: must stay CRLF (CP949-encoded; eol only touches CR/LF bytes, never CP949 data)
+*.bat text eol=crlf
+
+# Binary documents: no line-ending conversion, no diff
+*.pdf binary
