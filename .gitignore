@@ -1,22 +1,19 @@
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
+# Local backups (do not publish)
+*.bak
+*.bak_*
 
-# Temp files
-*.tmp
-*.temp
+# Runtime / generated outputs
+진단결과.txt
+diag*.txt
 *.log
 
-# Environment / secrets
-.env
-.env.*
-*.key
-*.pem
-*.p12
-*.pfx
-secrets.*
+# Build / temp artifacts
+_*.tmp
+_*.html
+_*.css
+_pdftest.*
 
-# System
+# OS / editor noise
+Thumbs.db
+desktop.ini
 .DS_Store
