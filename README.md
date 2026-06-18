@@ -1,188 +1,226 @@
-# Codex CLI 원클릭 런처 | One-Click Launcher
+# Codex CLI 원클릭 키트
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Platform: Windows](https://img.shields.io/badge/Platform-Windows-blue.svg)]()
-[![Version: 1.0](https://img.shields.io/badge/Version-1.0-green.svg)]()
+> OpenAI의 **Codex CLI**(코딩을 도와주는 AI 명령 도구)를, 컴퓨터·AI가 처음인 분도 **파일 하나 더블클릭**으로 설치·실행·제거할 수 있게 만든 한국어 도우미입니다.
 
-> **OpenAI Codex CLI를 더블클릭 한 번으로 설치하고 실행하는 Windows 런처**
->
-> A Windows launcher that installs and runs OpenAI Codex CLI with a single double-click.
+**English README:** [`README.en.md`](./README.en.md) · **왕초보 가이드:** [`왕초보_시작_가이드.md`](./왕초보_시작_가이드.md)
 
 ---
 
-## 목차 | Table of Contents
+## 0. 30초 빠른 시작
 
-- [이게 뭔가요?](#이게-뭔가요)
-- [필요한 것](#필요한-것)
-- [사용 방법 (초보자용)](#사용-방법-초보자용)
-- [메뉴 설명](#메뉴-설명)
-- [자주 묻는 질문](#자주-묻는-질문)
-- [주의사항](#주의사항)
-- [English Guide](#english-guide)
-- [License](#license)
+1. `Codex-CLI_One-Click_Kit.bat` 파일을 **두 번 클릭**합니다.
+2. 메뉴가 뜨면 **그냥 `Enter`** 한 번 누릅니다. (= 코덱스 시작)
+3. 처음이면 브라우저에서 **ChatGPT 로그인** → 끝. 이제 검은 화면에 **한국어로** 시키면 됩니다.
+   - 예: `이 폴더에 어떤 파일이 있는지 설명해줘`
+   - 끝낼 때: `/quit` 입력, 또는 `Ctrl` + `C`
 
----
-
-## 이게 뭔가요?
-
-**Codex CLI**는 OpenAI에서 만든 AI 코딩 도구입니다.  
-터미널(검은 화면)에서 자연어로 "이 파일을 정리해줘", "Python 코드 만들어줘" 같은 말을 하면 AI가 직접 실행해 주는 도구예요.
-
-이 런처는 그 Codex CLI를 **설치, 실행, 폴더 선택까지 한 번에** 해결해주는 `.bat` 파일입니다.  
-코딩을 전혀 몰라도, 더블클릭 하나면 됩니다.
+> 더 자세한 그림 설명은 [왕초보 시작 가이드](./왕초보_시작_가이드.md)를 보세요.
 
 ---
 
-## 필요한 것
+## 1. 이게 뭐예요?
 
-| 항목 | 설명 | 다운로드 |
-|------|------|----------|
-| **Windows 10/11** | 이 런처는 Windows 전용입니다 | — |
-| **Node.js** | Codex CLI를 실행하기 위한 기반 도구 | [nodejs.org](https://nodejs.org/) → 왼쪽 **LTS** 버튼 클릭 |
-| **OpenAI 계정** | ChatGPT Plus, Pro, Business, Edu, Enterprise 플랜 필요 | [platform.openai.com](https://platform.openai.com/) |
+- **Codex CLI** : 내 컴퓨터 폴더에서 "이 코드 설명해줘", "메모장 프로그램 만들어줘" 같은 일을 **한국어로 시키면** 해주는 OpenAI의 AI 도구입니다.
+- **이 키트** : 그 도구를 어렵지 않게 깔고 쓰도록 도와주는 **한국어 메뉴 프로그램**입니다.
+  - 공식 프로그램이 아니라 **비공식 도우미**입니다. 프로그램 자체를 담고 있지 않고, **공식 경로(npm)에서 설치만** 도와줍니다.
 
-> **Node.js가 없으면?** 런처를 실행하면 자동으로 안내해 드립니다. 안내에 따라 설치 후 다시 실행하세요.
+## 2. 사전 준비물 / 필요 프로그램
 
----
+| 준비물 | 꼭 필요? | 설명 |
+|---|---|---|
+| **Windows** 컴퓨터 | 필수 | Windows 10/11에서 동작합니다. |
+| **Node.js** (무료) | 필수 | Codex를 켜는 데 필요합니다. 없으면 키트가 알려주고, 가능하면 **자동 설치**도 시도합니다. 직접 받기: <https://nodejs.org/> → 왼쪽 **LTS** 버전. |
+| **ChatGPT 계정** | 필수(둘 중 하나) | 로그인해서 사용합니다. 무료 계정도 되지만, 더 많이 쓰려면 Plus 이상 권장. |
+| 또는 **OpenAI API 키** | 선택 | 계정 대신 API 키로도 쓸 수 있습니다(쓴 만큼 별도 과금). |
+| 인터넷 연결 | 필수 | 설치·로그인·AI 응답에 필요합니다. |
 
-## 사용 방법 (초보자용)
+> **비용 안내:** Codex 사용은 OpenAI의 ChatGPT 요금제 또는 API 사용량을 소모합니다. 무료 계정은 한도가 작습니다. 자세한 요금은 OpenAI 공식 안내를 확인하세요.
 
-### 1단계: Node.js 설치
+## 3. 다운로드 & 설치 방법
 
-1. [https://nodejs.org/](https://nodejs.org/) 접속
-2. 왼쪽 **LTS** 버튼 클릭해서 다운로드
-3. 다운로드된 파일 더블클릭 → 계속 Next 누르기
-4. 설치 완료
+1. 이 키트 폴더(파일들이 들어있는 폴더)를 컴퓨터의 원하는 위치에 둡니다.
+   - **중요:** 안에 있는 파일들(`.bat`, 가이드들)을 **함께 한 폴더에 두세요**. 따로 옮기면 안내가 깨질 수 있습니다.
+2. `Codex-CLI_One-Click_Kit.bat` 을 두 번 클릭합니다.
+3. (Codex가 없으면) 키트가 **자동으로 설치를 안내**합니다. `y` → Enter 로 진행하면 됩니다.
+   - 내부적으로 공식 명령 `npm install -g @openai/codex` 를 실행합니다. 보통 1~2분 걸립니다.
 
-### 2단계: 런처 실행
+> **파란색 "Windows의 PC 보호" 경고창**이 뜨면 정상입니다(처음 보는 파일이라 뜨는 안내). **`추가 정보`** → **`실행`** 을 누르세요.
 
-1. `Codex-CLI_One-Click_Kit.bat` 파일을 찾습니다
-2. **더블클릭**합니다
-3. "Windows의 PC 보호" 경고가 뜨면 → **추가 정보** → **실행** 클릭
+## 4. 실행 방법
 
-### 3단계: 메뉴에서 선택
+- `Codex-CLI_One-Click_Kit.bat` **두 번 클릭** → 검은 창에 한국어 메뉴가 뜹니다.
+- 메뉴에서 **그냥 Enter**(또는 `1`)를 누르면 코덱스가 바로 켜집니다.
+
+## 5. 메뉴 한눈에 보기 (현재 버전)
 
 ```
-[0] AUTO START (BEST!)  ← 이걸 누르면 자동으로 알아서 해줍니다
+    /==================================\
+    |      >>>   [  ENTER  ]   <<<      |
+    \==================================/
+     엔터(Enter) 키 한 번이면 바로 시작!
+
+    [1] 코덱스 시작
+    [2] 다른 폴더에서 시작
+    [3] 설치 / 다시 설치
+    [4] 업데이트 (최신 버전으로)
+    [5] 모드 바꾸기 (파일수정 <-> 읽기전용)
+    [6] 안 될 때 (자동 진단)
+    [H] 사용법       [Q] 끄기
+  ----- 조심해서 쓰는 메뉴 -----
+    [7] 제거 (Codex 지우기)
 ```
 
-처음에는 그냥 **0** 누르고 Enter!
+| 선택 | 기능 | 설명 |
+|---|---|---|
+| **Enter** 또는 **1** | 코덱스 시작 | 기억된 폴더에서 바로 시작 (가장 많이 씀) |
+| **2** | 다른 폴더에서 시작 | 바탕화면·문서·다운로드·새 폴더·직접 입력 중에서 선택 |
+| **3** | 설치 / 다시 설치 | Codex를 처음 설치하거나 다시 설치 |
+| **4** | 업데이트 | 최신 버전으로 올리기 |
+| **5** | 모드 바꾸기 | "파일수정" ↔ "읽기 전용" 전환 (한 번 정하면 계속 기억) |
+| **6** | 안 될 때 (진단) | 무엇이 문제인지 자동 점검 (`진단결과.txt`로도 저장) |
+| **7** | 제거 | Codex 지우기 (되돌리려면 `3` 설치로 다시 깔 수 있음) |
+| **H** | 사용법 | 명령어·도움말 보기 |
+| **Q** | 끄기 | 메뉴 종료 |
 
-### 4단계: Codex CLI 최초 로그인
+> 입력은 **번호/글자 + Enter**. 앞뒤 공백은 자동으로 무시되고, 잘못 누르면 안내가 다시 떠서 안전합니다.
 
-처음 실행 시 브라우저가 열리면서 ChatGPT 계정 로그인을 요청합니다.  
-로그인하면 바로 사용 가능합니다.
+## 6. 사용 방법 / 작동 방법
 
----
+1. 메뉴에서 **Enter** → 코덱스가 켜집니다.
+2. 검은 화면에 **하고 싶은 일을 한국어로** 적고 Enter 하세요.
+   - `이 폴더에 어떤 파일이 있는지 설명해줘`
+   - `이 코드가 무슨 일을 하는지 쉽게 알려줘`
+   - `간단한 메모장 프로그램 만들어줘`
+3. 끝낼 때는 `/quit` 입력, 또는 `Ctrl` + `C`.
 
-## 메뉴 설명
+### 모드(안전장치) — 중요
 
-| 번호 | 이름 | 설명 |
-|------|------|------|
-| **0** | AUTO START | 현재 폴더에 파일이 있으면 자동 시작. 없으면 선택지 제공 |
-| **1** | HERE | 런처가 있는 폴더에서 Codex 실행 |
-| **2** | DESKTOP | 바탕화면 폴더에서 Codex 실행 |
-| **3** | DOCUMENTS | 문서 폴더에서 Codex 실행 |
-| **4** | DOWNLOADS | 다운로드 폴더에서 Codex 실행 |
-| **5** | NEW PROJECT | 새 프로젝트 폴더를 만들고 Codex 실행 |
-| **6** | SELECT FOLDER | 직접 폴더 경로를 선택해서 Codex 실행 |
-| **Q** | EXIT | 종료 |
+| 모드 | 뜻 | 언제 |
+|---|---|---|
+| **파일수정** (기본) | AI가 **지금 폴더 안에서만** 파일을 만들고 고칠 수 있음 (폴더 밖·PC 전체는 못 건드림) | "메모장 만들어줘"처럼 실제로 결과물을 만들 때 |
+| **읽기 전용** | AI가 파일을 **전혀 건드리지 않음** (읽기만) | 그냥 설명만 듣고 싶을 때, 더 보수적으로 쓸 때 |
 
-### AUTO 모드 자동 감지 파일
+- 모드는 메뉴 **`5`** 에서 언제든 바꿀 수 있고, 한 번 정하면 계속 기억합니다.
+- **개인 폴더(바탕화면·문서 등)에서 "파일수정"으로 켜면** 키트가 한 번 더 주의를 줍니다.
 
-현재 폴더에 아래 파일 중 하나라도 있으면 자동으로 Codex를 시작합니다:
-
-`.html` `.py` `.js` `.ts` `.txt` `.md` `.json` `.xml` `AGENTS.md`
-
----
-
-## 자주 묻는 질문
-
-**Q: "Windows의 PC 보호" 경고가 떠요**  
-A: 정상입니다. "추가 정보" → "실행"을 클릭하세요. 이 파일은 오픈소스이므로 직접 코드를 확인할 수 있습니다.
-
-**Q: Codex CLI가 자동으로 설치되나요?**  
-A: 네, 설치가 안 되어 있으면 런처가 설치 여부를 물어보고 자동으로 설치합니다.
-
-**Q: 어떤 ChatGPT 플랜이 필요한가요?**  
-A: Plus, Pro, Business, Edu, Enterprise 플랜이 필요합니다. 무료 플랜은 지원되지 않습니다.
-
-**Q: 인터넷이 없으면 안 되나요?**  
-A: Codex CLI 자체가 AI 서비스이므로 인터넷 연결이 필요합니다.
-
-**Q: Mac이나 Linux에서도 되나요?**  
-A: 이 런처(`.bat`)는 Windows 전용입니다. Mac/Linux는 직접 `npx @openai/codex` 명령어를 터미널에서 실행하세요.
-
----
-
-## 주의사항
-
-- 이 런처는 **Windows 전용**입니다
-- Node.js가 설치되어 있어야 합니다 (런처가 안내해 줍니다)
-- OpenAI 유료 플랜이 필요합니다
-- Codex CLI 사용 중 생성되는 파일의 책임은 사용자에게 있습니다
-- AI가 파일을 수정/삭제할 수 있으므로, 중요한 파일은 미리 백업하세요
-
----
-
-## 폴더 구조
+## 7. 워크플로우 (전체 흐름)
 
 ```
+[더블클릭] → [한국어 메뉴] → [Enter = 시작]
+     → (처음 한 번) ChatGPT 로그인
+     → 작업할 폴더 선택 (기본: 기억된 폴더, 또는 [2]로 다른 폴더)
+     → 한국어로 시킨다  →  AI가 답하거나 파일을 만든다
+     → /quit 으로 종료  →  다시 메뉴로
+```
+
+## 8. 파일 위치 / 문서 위치 / 저장되는 곳
+
+| 항목 | 위치 |
+|---|---|
+| 실행 파일 | `Codex-CLI_One-Click_Kit.bat` (이 폴더) |
+| 한국어 README | `README.md` · 영문 `README.en.md` |
+| 왕초보 가이드 | `왕초보_시작_가이드.md` · 영문 `Beginner_Guide_EN.md` |
+| 오류·명령어 치트시트 | `오류대처_명령어_치트시트.md` |
+| 라이선스 | `LICENSE` (Apache-2.0) |
+| PDF 문서 | 위 문서들의 `*.pdf` (같은 폴더) |
+| **키트 설정 저장** | `C:\Users\(내이름)\AppData\Local\codex-cli-one-click-kit\` (모드·마지막 폴더 기억) |
+| **Codex 로그인 정보** | `C:\Users\(내이름)\.codex\` (제거 시 따로 물어봄) |
+| 진단 결과 | `진단결과.txt` (이 폴더, 메뉴 `6` 실행 시 생성) |
+
+## 9. 자주 쓰는 명령어
+
+> 보통은 키트 메뉴만 써도 충분합니다. 아래는 검은 화면(터미널)에서 직접 칠 때.
+
+| 명령 | 뜻 |
+|---|---|
+| `codex` | 대화형으로 시작 |
+| `codex "할 일 설명"` | 바로 작업 시키기 (예: `codex "이 코드 설명해줘"`) |
+| `codex exec "작업"` | 질문 없이 한 번에 실행 |
+| `codex --version` | 설치된 버전 확인 |
+| `codex logout` | 로그아웃 |
+| `codex --sandbox read-only` | 읽기만 (파일 안 건드림) |
+| `codex --sandbox workspace-write` | 지금 폴더 안에서만 파일 수정 |
+| `npm install -g @openai/codex@latest` | 최신으로 업데이트 (메뉴 `4`와 동일) |
+| `npm uninstall -g @openai/codex` | 제거 (메뉴 `7`과 동일) |
+
+## 10. 문제 대처 / 오류 대처 (요약)
+
+| 증상 | 해결 |
+|---|---|
+| `codex` 명령을 못 찾음 | 컴퓨터를 **재시작**한 뒤 다시 실행. 그래도 안 되면 메뉴 `6` 진단 |
+| 설치 실패 | 인터넷 확인 후 메뉴 `3`으로 다시 설치 |
+| 로그인 창이 안 열림 | 인터넷·방화벽 확인. 화면의 주소를 직접 브라우저에 붙여넣기 |
+| `429 / Too many requests` | 사용량 한도. 표시된 시간만큼 기다린 뒤 다시 |
+| Node 버전이 낮다고 함 | <https://nodejs.org> 에서 최신 **LTS**(22 이상 권장) 재설치 |
+
+> 더 자세한 표와 설명은 [오류대처·명령어 치트시트](./오류대처_명령어_치트시트.md) 또는 [왕초보 가이드](./왕초보_시작_가이드.md)에 있습니다. 막히면 메뉴 **`6` 진단** 화면을 캡처해 두세요.
+
+## 11. 제거 방법
+
+- 메뉴에서 **`7`** → `y` 입력 → Codex가 지워집니다.
+- "로그인 정보(설정)까지 지울까요?"는 보통 **`n`** 권장(다음에 또 쓸 때 편함).
+- 되돌리려면 메뉴 **`3` 설치**로 다시 깔면 됩니다.
+
+## 12. 폴더 구조
+
+```text
 Codex-CLI_One-Click_Kit/
-├── Codex-CLI_One-Click_Kit.bat   # 메인 런처 파일 (이것만 실행하면 됨)
-├── README.md                     # 이 문서
-└── LICENSE                       # 라이선스
+├─ Codex-CLI_One-Click_Kit.bat   # 실행 파일 (더블클릭)
+├─ README.md                     # 전체 설명서 (한국어, 기본)
+├─ README.en.md                  # 전체 설명서 (English)
+├─ 왕초보_시작_가이드.md            # 왕초보 단계별 가이드 (한국어)
+├─ Beginner_Guide_EN.md          # Beginner guide (English)
+├─ 오류대처_명령어_치트시트.md       # 오류·명령어 빠른 참고
+├─ LICENSE                       # Apache License 2.0
+└─ *.pdf                         # 위 문서들의 PDF 판
 ```
 
----
+> 이 파일들은 **한 폴더에 함께** 두세요. 따로 옮기면 안내 링크가 깨질 수 있습니다.
+
+## 13. 환경 변수
+
+- 이 키트는 **따로 설정할 환경 변수가 없습니다.** 더블클릭만 하면 됩니다.
+- 키트가 내부에서 자동으로 다루는 값:
+  - `PATH` 에 `%APPDATA%\npm`(npm 전역 설치 경로)을 추가해 `codex` 명령을 인식시킵니다.
+  - 설정은 `%LOCALAPPDATA%\codex-cli-one-click-kit\`, 로그인 정보는 `%USERPROFILE%\.codex\` 에 저장됩니다.
+- (선택) 계정 로그인 대신 **OpenAI API 키**로 쓰려면 Codex가 안내하는 방식(`codex login` 또는 `OPENAI_API_KEY` 환경 변수)을 따르세요. **API 키는 절대 이 폴더나 공개 위치에 저장하지 마세요.**
+
+## 14. 빌드 · 테스트 · 배포(공유) 방법
+
+- **빌드:** 필요 없습니다. 순수 Windows 배치 스크립트(`.bat`)라 컴파일 과정이 없습니다.
+- **테스트:** `Codex-CLI_One-Click_Kit.bat` 더블클릭 → 메뉴가 뜨고 **Enter**로 코덱스가 켜지면 정상. 환경 점검은 메뉴 **`6` 진단**.
+- **배포(공유):** 이 폴더를 통째로 압축해 전달하거나, GitHub 저장소에서 받게 하면 됩니다. 받는 사람은 **압축을 풀고 `.bat`만 더블클릭**하면 됩니다. (Node.js·Codex는 키트가 안내·설치)
+
+## 15. 보안 · 운영 주의사항
+
+- 이 키트는 **API 키·비밀번호를 담고 있지 않으며**, 사용자의 파일을 외부로 보내지 않습니다.
+- Codex **사용 중 입력한 내용**은 OpenAI 서버로 전송되어 처리됩니다 → **개인정보·비밀번호·사내 기밀을 입력하지 마세요.**
+- AI가 만든 코드·명령은 **실행 전에 직접 확인**하세요. 잘 모르겠으면 메뉴 `5`에서 **읽기 전용** 모드로 바꿔 쓰세요.
+- 중요한 자료가 있는 폴더(바탕화면·문서 등)에서는 "파일수정" 모드를 피하거나, 키트의 주의 안내가 뜨면 한 번 더 확인하세요.
+- 처음 실행 시 **"Windows의 PC 보호(SmartScreen)"** 경고는 정상입니다 → `추가 정보` → `실행`.
+- 로그인은 **2단계 인증(MFA)** 을 권장합니다. 공용 PC에서는 사용 후 `codex logout` 으로 로그아웃하세요.
 
 ---
 
-## English Guide
+## 라이선스 · 저작권 · 상업적 이용 (꼭 읽어주세요)
 
-### What is this?
+**이 키트(원클릭 도우미)**
+- 라이선스: **Apache License 2.0** (전문은 `LICENSE` 파일)
+- 저작권: **Copyright 2026 SoDam AI Studio**
+- 상업적 이용: Apache-2.0에 따라 **상업적 사용·수정·재배포가 허용**됩니다. 단, **저작권 고지와 라이선스 사본을 포함**하고, 변경한 경우 변경 사실을 알려야 하며, "SoDam AI Studio"의 **상표/이름을 보증·홍보 용도로 무단 사용할 수 없습니다.** 본 소프트웨어는 **보증 없이 "있는 그대로"** 제공됩니다.
 
-**Codex CLI** is an AI coding tool by OpenAI that lets you give natural language instructions in a terminal — like "create a Python script" or "summarize this file" — and the AI executes them directly.
+**Codex CLI 자체 (이 키트가 설치하는 OpenAI 프로그램)**
+- `@openai/codex` 는 **OpenAI의 저작물**이며 **Apache License 2.0** 으로 배포됩니다. (저장소: <https://github.com/openai/codex>)
+- 이 키트는 Codex를 **포함·재배포하지 않고**, 공식 npm 경로에서 **설치만** 돕습니다.
 
-This launcher is a Windows `.bat` file that handles **installation, startup, and folder selection** in one click. No coding knowledge required.
+**OpenAI 서비스 이용 (계정 · API)**
+- Codex를 **사용**하려면 OpenAI 계정(ChatGPT 요금제) 또는 OpenAI API 키가 필요하며, 그 이용은 **OpenAI의 이용약관 및 정책**을 따릅니다. 상업적 사용 가능 범위·요금·한도는 **OpenAI 공식 약관**을 직접 확인하세요.
 
-### Requirements
+**상표 고지**
+- **OpenAI**, **Codex**, **ChatGPT** 는 OpenAI의 상표입니다. 이 키트는 **OpenAI와 무관한 비공식 도우미**이며, 어떤 제휴·보증도 의미하지 않습니다.
 
-| Item | Description | Download |
-|------|-------------|----------|
-| **Windows 10/11** | Windows only | — |
-| **Node.js** | Runtime for Codex CLI | [nodejs.org](https://nodejs.org/) → Click **LTS** |
-| **OpenAI Account** | Plus, Pro, Business, Edu, or Enterprise plan | [platform.openai.com](https://platform.openai.com/) |
+## 면책 (Disclaimer)
 
-### Quick Start
-
-1. Install Node.js from [nodejs.org](https://nodejs.org/) (LTS version)
-2. Double-click `Codex-CLI_One-Click_Kit.bat`
-3. If Windows SmartScreen appears → click **More info** → **Run anyway**
-4. Press **0** for AUTO START
-5. Log in with your OpenAI account when prompted
-
-### Menu Options
-
-| Key | Name | Description |
-|-----|------|-------------|
-| 0 | AUTO START | Auto-detect project files and start |
-| 1 | HERE | Run in current folder |
-| 2 | DESKTOP | Run from Desktop |
-| 3 | DOCUMENTS | Run from Documents folder |
-| 4 | DOWNLOADS | Run from Downloads folder |
-| 5 | NEW PROJECT | Create new project folder and start |
-| 6 | SELECT FOLDER | Choose a custom folder |
-| Q | EXIT | Quit |
-
-### Notes
-
-- Windows only (use `npx @openai/codex` on Mac/Linux)
-- Requires a paid OpenAI plan (Plus, Pro, Business, Edu, Enterprise)
-- AI may modify files — back up important data before use
-
----
-
-## License
-
-Copyright © 2026 SoDam AI Studio. Released under the [MIT License](./LICENSE).
+- 이 키트는 **보증 없이 "있는 그대로"** 제공되며, 사용으로 생기는 결과의 책임은 **사용자에게** 있습니다.
+- AI가 만든 코드·답변·명령은 **항상 직접 확인**하세요. 중요한 자료가 있는 폴더에서는 **읽기 전용 모드**를, 잘 모르는 명령은 실행 전에 한 번 더 확인하는 것을 권장합니다.
+- 이 키트는 사용자의 파일을 외부로 보내지 않습니다. 다만 Codex 사용 시 입력 내용은 OpenAI 서버로 전송되어 처리됩니다(개인정보·민감정보 입력 주의).
